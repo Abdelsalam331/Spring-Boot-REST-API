@@ -32,7 +32,6 @@ public class Controller {
 
     @PostMapping
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
-        employee.setId(employeeService.getallEmployees().size() + 1);
         return ResponseEntity.created(getLocation(employee.getId())).body(employeeService.saveEmployee(employee));
     }
 
@@ -46,7 +45,7 @@ public class Controller {
         employeeService.updateEmployee(employee);
     };
 
-    private URI getLocation(Integer id) {
+    public static URI getLocation(Integer id) {
         return ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(id).toUri();
     };
 

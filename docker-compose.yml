@@ -1,0 +1,39 @@
+services:
+    db:
+      container_name: postgres
+      image: postgres
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: root
+        PGDATA: /data/postgres
+      volumes:
+        - db:/data/postgres
+      ports:
+        - "5332:5432"
+      networks:
+        - db
+      restart: unless-stopped
+
+
+    api:
+      container_name: application
+      build: .
+      image: application
+      environment:
+          SPRING_DATASOURCE_URL : jdbc:postgresql://postgresql:3306/employee
+          SPRING_DATASOURCE_USERNAME : 'postgres'
+          SPRING_DATASOURCE_PASSWORD : 'root'
+          SERVICE_TAGS : prod
+          SERICE_NAME : springapi
+      ports:
+        - "8080:8080"
+      networks:
+        - db
+      restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
