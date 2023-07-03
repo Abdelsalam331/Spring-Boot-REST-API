@@ -1,7 +1,8 @@
-package com.example.demo.Security;
+package com.example.demo.Security.Configuration;
 
 
 
+import com.example.demo.Security.Filter.JWTAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,7 @@ public class SecurityConfiguration {
                 csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers(("/api/v1/auth/**"))
+                .requestMatchers(("/api/v1/employees/auth/**"))
                 .permitAll()
                 .anyRequest()
                 .authenticated()

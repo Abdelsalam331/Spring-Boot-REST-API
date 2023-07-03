@@ -1,4 +1,4 @@
-package com.example.demo.Security;
+package com.example.demo.Security.Configuration;
 
 import com.example.demo.Repository.JPAEmployeeRepository;
 import lombok.RequiredArgsConstructor;

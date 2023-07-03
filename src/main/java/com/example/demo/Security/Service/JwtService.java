@@ -1,4 +1,4 @@
-package com.example.demo.Security;
+package com.example.demo.Security.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,7 +16,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String seceretKey = "D4F79971C7EE5C6BBF5A2C99B41C9";
+    private static final String seceretKey = "735d502a8331136ba01b10a04a04fc427ad6d9f15ef92d4ab50d64e272e27c9b";
 
     public String extractUsername(String token){
         return extractClaim(token, Claims::getSubject);
