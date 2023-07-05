@@ -7,14 +7,14 @@ import com.example.demo.Security.Auth.authenticationResponse;
 import com.example.demo.Security.Auth.registerRequest;
 import com.example.demo.Service.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+
+
 import java.util.List;
 
 @RestController
@@ -34,7 +34,7 @@ public class Controller {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Employee> getaEmployee(@PathVariable("id") Integer id){
+    public ResponseEntity<Employee> getaEmployee(@PathVariable("id") Integer id, Authentication auth) {
         return ResponseEntity.ok(employeeService.getOneEmployee(id));
     }
 
@@ -60,10 +60,6 @@ public class Controller {
     @PutMapping("/update")
     public void updateEmployee(@RequestBody Employee employee){
         employeeService.updateEmployee(employee);
-    };
-
-    public static URI getLocation(Integer id) {
-        return ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(id).toUri();
     };
 
 }
